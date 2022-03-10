@@ -12,7 +12,7 @@
 
             <div class="blog-meta big-meta">
                 <small><a href="tech-single.html" title="">{{blog.created}}</a></small>
-                <small><a href="tech-author.html" title="">{{blog.writer}}</a></small>
+                <small><a href="{%url 'searchWriter' blog.writer%}" title="">{{blog.writer}}</a></small>
                 <small><a href="#" title=""><i class="fa fa-eye"></i> {{blog.views | intcomma}}</a></small>
             </div><!-- end meta -->
 

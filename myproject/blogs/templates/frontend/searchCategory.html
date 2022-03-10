@@ -24,7 +24,7 @@
                     <p>{{blog.description}}</p>
                     <small class="firstsmall"><a href="{%url 'searchCategory' blog.category_id%}" class="bg-orange" title="">{{blog.category}}</a></small>
                     <small><a title="">{{blog.created}}</a></small>
-                    <small><a title="">by {{blog.writer}}</a></small>
+                    <small><a href="{%url 'searchWriter' blog.writer%}" title="">by {{blog.writer}}</a></small>
                     <small><a title=""><i class="fa fa-eye"></i> {{blog.views | intcomma}}</a></small>
                 </div><!-- end meta -->
             </div><!-- end blog-box -->

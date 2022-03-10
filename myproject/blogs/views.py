@@ -51,3 +51,13 @@ def searchCategory(request,cat_id):
     suggestion = Blogs.objects.all().order_by('views')[:3] # น้อยไปมาก 3 ตัวแรก
 
     return render(request,"frontend/searchCategory.html",{"blogs":blogs,'categories':categories,'poppular':poppular,'suggestion':suggestion,'categoryName':categoryName,})
+
+def searchWriter(request,writer):
+    blogs = Blogs.objects.filter(writer=writer)
+    categories = Category.objects.all()
+    #บทความยอดนิยม
+    poppular = Blogs.objects.all().order_by('-views')[:3] # เรียงมากไปน้อย 3 ตัวแรก
+    #บทความแนะนำ
+    suggestion = Blogs.objects.all().order_by('views')[:3] # น้อยไปมาก 3 ตัวแรก
+
+    return render(request,"frontend/searchWriter.html",{"blogs":blogs,'categories':categories,'poppular':poppular,'suggestion':suggestion,'writer':writer})
