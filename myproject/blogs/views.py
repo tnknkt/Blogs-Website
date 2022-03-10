@@ -40,3 +40,14 @@ def blogDetail(request,id):
     singleBlog.views = singleBlog.views+1
     singleBlog.save()
     return render(request,"frontend/blogDetail.html",{"blog":singleBlog,'categories':categories,'poppular':poppular,'suggestion':suggestion})
+
+def searchCategory(request,cat_id):
+    blogs = Blogs.objects.filter(category_id=cat_id)
+    categories = Category.objects.all()
+    categoryName = Category.objects.get(id=cat_id)
+    #บทความยอดนิยม
+    poppular = Blogs.objects.all().order_by('-views')[:3] # เรียงมากไปน้อย 3 ตัวแรก
+    #บทความแนะนำ
+    suggestion = Blogs.objects.all().order_by('views')[:3] # น้อยไปมาก 3 ตัวแรก
+
+    return render(request,"frontend/searchCategory.html",{"blogs":blogs,'categories':categories,'poppular':poppular,'suggestion':suggestion,'categoryName':categoryName,})

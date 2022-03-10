@@ -7,7 +7,7 @@
 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
     <div class="page-wrapper">
         <div class="blog-title-area text-center">
-            <span class="color-orange"><a href="tech-category-01.html" title="">{{blog.category}}</a></span>
+            <span class="color-orange"><a href="{%url 'searchCategory' blog.category_id%}" title="">{{blog.category}}</a></span>
             <h3>{{blog.name}}</h3>
 
             <div class="blog-meta big-meta">

@@ -78,7 +78,7 @@
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        <span class="bg-orange"><a href="#" title="">{{blog.category}}</a></span>
+                                        <span class="bg-orange"><a href="{%url 'searchCategory' blog.category_id%}" title="">{{blog.category}}</a></span>
                                         <h4><a href="{%url 'blogDetail' blog.id%}" title="">{{blog.name}}</a></h4>
                                         <small><a href="#" title="">{{blog.created}}</a></small>
                                         <small><a href="#" title="">by {{blog.writer}}</a></small>
