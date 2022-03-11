@@ -62,7 +62,8 @@
                         <!-- Login Block -->
                         <div class="block push-bit">
                             <!-- Login Form -->
-                            <form action="#" method="post" id="form-login" class="form-horizontal">
+                            <form action="{%url 'login'%}" method="post" id="form-login" class="form-horizontal">
+                                {%csrf_token%}
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <div class="input-group">

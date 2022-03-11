@@ -1,7 +1,7 @@
 from email import message
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,auth
 
 # Create your views here.
 
@@ -41,3 +41,18 @@ def register(request):
                 messages.info(request,"ไม่สามารถลงทะเบียนได้ รหัสผ่านไม่ตรงกัน")
                 return redirect("member")
     
+def login(request):
+    username = request.POST["username"]
+    password = request.POST["password"]
+    user = auth.authenticate(username=username,password=password)
+    
+    if user is not None :
+        auth.login(request,user)
+        return redirect('panel')
+    else : 
+        messages.info(request,'กรอกชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง')
+        return redirect('member')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('member')
