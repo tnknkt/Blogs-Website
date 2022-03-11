@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         {% load static %}
+        {% load humanize %}
         <title>Writer Panel</title>
 
         <meta name="robots" content="noindex, nofollow">
@@ -49,7 +50,7 @@
                                         <img src="{% static 'backend/img/placeholders/avatars/avatar2.jpg' %}" alt="avatar">
                                     </a>
                                 </div>
-                                <div class="sidebar-user-name">ชื่อนักเขียน</div>
+                                <div class="sidebar-user-name">{{writer}}</div>
                             </div>
                             <!-- END User Info -->
                             <!-- Sidebar Navigation -->
@@ -162,7 +163,7 @@
                                             <i class="gi gi-table"></i>
                                         </div>
                                         <h3 class="widget-content text-right animation-pullDown">
-                                            จำนวน <strong>50</strong><br>
+                                            จำนวน <strong>{{blogCount | intcomma}}</strong><br>
                                             <small>บทความ</small>
                                         </h3>
                                     </div>
@@ -177,7 +178,7 @@
                                             <i class="fa fa-heart"></i>
                                         </div>
                                         <h3 class="widget-content text-right animation-pullDown">
-                                            +10,000 <strong>Views</strong>
+                                            {{total.views__sum | intcomma}} <strong>Views</strong>
                                             <small>ยอดเข้าชมทั้งหมด</small>
                                         </h3>
                                     </div>
@@ -210,12 +211,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for blog in blogs %}
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td>Image</td>
-                                        <td class="text-right hidden-xs"><strong>ท่องเที่ยว</strong></td>
-                                        <td class="text-center">5,000</td>
-                                        <td class="hidden-xs text-center">18/02/2021</td>
+                                        <td class="text-center">{{blog.id}}</td>
+                                        <td class="text-center"><img src="{{blog.image.url}}" alt="" style="width: 60px; height: 50px;"></td>
+                                        <td class="text-right hidden-xs"><strong>{{blog.category}}</strong></td>
+                                        <td class="text-center">{{blog.views | intcomma}}</td>
+                                        <td class="hidden-xs text-center">{{blog.created}}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-xs">
                                                 <a href="#" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
@@ -223,6 +225,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                             <!-- END All Products Content -->
