@@ -29,7 +29,7 @@
             <img src="{{blog.image.url}}" alt="" class="img-fluid">
         </div><!-- end media -->
         <div class="blog-content">  
-            {{blog.content}}
+            {{blog.content | safe}}
         </div><!-- end content -->
     </div><!-- end page-wrapper -->
 </div><!-- end col -->

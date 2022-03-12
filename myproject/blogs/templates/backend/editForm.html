@@ -7,7 +7,7 @@
 <div class="block">
     <!-- Basic Form Elements Title -->
     <div class="block-title">
-        <h2><strong>เพิ่มบทความ</strong></h2>
+        <h2><strong>แก้ไขบทความ</strong></h2>
     </div>
     <!-- END Form Elements Title -->
     <!-- Basic Form Elements Content -->
@@ -15,14 +15,15 @@
         <p style="color: red">{{message}}</p>
     {% endfor %}
 
-    <form action="{% url 'insertData' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+    <form action="{% url 'updateData' blogEdit.id%}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
         {% csrf_token %}
         <div class="form-group">
             <div class="col-md-6">
-                <input type="text" id="name" name="name" class="form-control" placeholder="ชื่อบทความ" required>
+                <input type="text" id="name" name="name" class="form-control" placeholder="ชื่อบทความ" required value="{{blogEdit.name}}">
             </div>
             <div class="col-md-6">
                 <select name="category" class="select-chosen" style="width: 250px;">
+                    <option value="{{blogEdit.category_id}}">{{blogEdit.category}}</option>
                     {% for category in categories %}
                     <option value="{{category.id}}">{{category.name}}</option>
                     {% endfor %}
@@ -31,12 +32,12 @@
         </div>
         <div class="form-group">
             <div class="col-md-12">
-                <textarea type="text" name="description" rows="2" class="form-control" placeholder="รายละเอียดบทความ"></textarea>
+                <textarea type="text" name="description" rows="2" class="form-control" placeholder="รายละเอียดบทความ">{{blogEdit.description}}</textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-12">
-                <textarea type="text" name="content" rows="5" class="form-control" placeholder="เนื้อหาบทความ"></textarea>
+                <textarea type="text" name="content" rows="5" class="form-control" placeholder="เนื้อหาบทความ">{{blogEdit.content}}</textarea>
             </div>
         </div>
         <script>
@@ -44,12 +45,13 @@
         </script>
         <div class="form-group">
             <div class="col-md-12">
+                <img src="{{blogEdit.image.url}}" alt="" style="width: 300px; height: 200px;">
                 <input type="file" name="image" class="form-control" placeholder="ภาพปก">
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i>บันทึก</button>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i>อัปเดต</button>
             </div>
         </div>
     </form>

@@ -27,6 +27,10 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="{% static 'backend/js/vendor/modernizr.min.js' %}"></script>
+
+        {% block header %}
+
+        {% endblock %}
     </head>
     <body>
         <div id="page-wrapper">
@@ -120,10 +124,12 @@
                                     <li class="dropdown-header text-center">บัญชีผู้ใช้</li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="page_ready_user_profile.html">
+                                        {% if request.user.is_authenticated and request.user.username %}
+                                        <a href="{% url 'searchWriter' request.user.username %}" target="blank">
                                             <i class="fa fa-user fa-fw pull-right"></i>
-                                            โปรไฟล์
+                                            ดูบทความของฉัน
                                         </a>
+                                        {% endif %}
                                         <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
                                         <a href="{%url 'logout'%}"><i class="fa fa-ban fa-fw pull-right"></i> ออกจากระบบ</a>
                                     </li>
