@@ -17,3 +17,6 @@ class Blogs(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'บทความ'
+        verbose_name_plural = 'ข้อมูลบทความ'
